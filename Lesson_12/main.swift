@@ -99,3 +99,20 @@ compare("Экстеншн", "Джереник")
 compare(2, 4)
 compare(7, 7)
 compare("D", "M")
+
+/*  Задание 6: Расширение для Dictionary — переворот ключей и значений */
+
+extension Dictionary where Key: Hashable, Value: Hashable {
+    func flipped() -> [Value: Key] {
+        var flippedDictionary: [Value: Key] = [:]
+        
+        for (key, value) in self {
+            flippedDictionary[value] = key
+        } // Избегаем дублирования присвоением новому множеству.
+        
+        return flippedDictionary
+    }
+}
+let firstDictionary: [String: Int] = ["DepecheMode": 1980, "DireStraits": 1977, "Queen": 1970, "PinkFloyd": 1965, "Warhorse": 1970]
+let flippedDictionary = firstDictionary.flipped()
+print(flippedDictionary)
